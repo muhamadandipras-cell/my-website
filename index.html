@@ -1,828 +1,772 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=yes"
     />
-    <title>Web Budgeting Tracker | Finances & Productivity</title>
-    <!-- Bootstrap 5 CSS + Icons + Google Fonts -->
+    <title>UMKM Jaya | Produk Lokal Berkualitas</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
-      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <style>
       * {
-        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
+
       body {
-        background: #f4f7fc;
+        font-family: "Inter", sans-serif;
+        background-color: #fefcf5;
+        color: #1e2a2f;
+        line-height: 1.5;
         scroll-behavior: smooth;
       }
-      /* navbar custom */
-      .navbar-brand {
+
+      /* Container */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Header / Navbar */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 20px 0;
+        gap: 16px;
+      }
+      .logo {
+        font-size: 1.8rem;
         font-weight: 700;
-        letter-spacing: -0.3px;
+        letter-spacing: -0.5px;
+        background: linear-gradient(135deg, #2b7a3e, #f4b942);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
       }
-      .hero-section {
-        background: linear-gradient(135deg, #0b2b26 0%, #1e4a3b 100%);
-        color: white;
-        border-radius: 0 0 2rem 2rem;
-        padding: 3rem 0 2.5rem 0;
-        margin-bottom: 2rem;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      }
-      .card-budget {
-        border: none;
-        border-radius: 1.5rem;
-        box-shadow: 0 12px 28px rgba(0, 32, 32, 0.08);
-        transition: transform 0.2s ease;
-        background: white;
-      }
-      .card-budget:hover {
-        transform: translateY(-3px);
-      }
-      .stat-card {
-        background: white;
-        border-radius: 1.25rem;
-        padding: 1rem 1.2rem;
-        box-shadow:
-          0 5px 15px rgba(0, 0, 0, 0.02),
-          0 2px 6px rgba(0, 0, 0, 0.05);
-        border-left: 5px solid;
-        transition: all 0.2s;
-      }
-      .progress-bar-custom {
-        height: 10px;
-        border-radius: 10px;
-        background-color: #e9ecef;
-      }
-      .progress-fill {
-        background: #2c7a5e;
-        border-radius: 10px;
-        height: 100%;
-        width: 0%;
-        transition: width 0.35s ease;
-      }
-      .badge-category {
-        font-size: 0.75rem;
-        font-weight: 500;
-        padding: 0.35rem 0.75rem;
-        border-radius: 40px;
-      }
-      .btn-primary-custom {
-        background: #1e4a3b;
-        border: none;
-        border-radius: 40px;
-        padding: 0.5rem 1.2rem;
-        font-weight: 500;
-        transition: all 0.2s;
-      }
-      .btn-primary-custom:hover {
-        background: #0f3328;
-        transform: scale(0.98);
-      }
-      .btn-outline-custom {
-        border-radius: 40px;
-        border: 1px solid #1e4a3b;
-        color: #1e4a3b;
-        font-weight: 500;
-      }
-      .btn-outline-custom:hover {
-        background: #eef3f0;
-        border-color: #1e4a3b;
-      }
-      .table-transactions th {
-        background-color: #f8fafc;
-        font-weight: 600;
-        border-bottom-width: 1px;
-      }
-      .delete-btn {
+      .logo i {
+        color: #f4b942;
+        margin-right: 6px;
         background: none;
-        border: none;
-        color: #b91c1c;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: 0.1s;
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        color: #f4b942;
       }
-      .delete-btn:hover {
-        color: #7f1a1a;
-        transform: scale(1.1);
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+      .nav-links a {
+        text-decoration: none;
+        font-weight: 500;
+        color: #2c4b3e;
+        transition: 0.2s;
+        font-size: 1rem;
+      }
+      .nav-links a:hover {
+        color: #f4b942;
+      }
+      .btn-contact {
+        background-color: #2b7a3e;
+        color: white;
+        padding: 10px 24px;
+        border-radius: 40px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 0.9rem;
+      }
+      .btn-contact:hover {
+        background-color: #1f5e2f;
+        transform: scale(1.02);
+      }
+
+      /* Hero Section */
+      .hero {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        padding: 40px 0 60px;
+      }
+      .hero-text {
+        flex: 1;
+      }
+      .hero-text .badge {
+        background: #fef1cf;
+        display: inline-block;
+        padding: 6px 14px;
+        border-radius: 30px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #b47c2e;
+        margin-bottom: 20px;
+      }
+      .hero-text h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        color: #1e2a2f;
+      }
+      .hero-text h1 span {
+        color: #f4b942;
+      }
+      .hero-text p {
+        font-size: 1.1rem;
+        color: #4a5b55;
+        margin-bottom: 30px;
+        max-width: 90%;
+      }
+      .hero-buttons {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .btn-primary {
+        background-color: #f4b942;
+        color: #2c3e2b;
+        padding: 12px 28px;
+        border-radius: 40px;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s;
+        font-size: 1rem;
+      }
+      .btn-primary:hover {
+        background-color: #e0a72e;
+        transform: translateY(-2px);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 2px solid #2b7a3e;
+        padding: 10px 26px;
+        border-radius: 40px;
+        font-weight: 600;
+        color: #2b7a3e;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .btn-outline:hover {
+        background: #2b7a3e10;
+        border-color: #f4b942;
+      }
+      .hero-image {
+        flex: 1;
+        text-align: center;
+      }
+      .hero-image img {
+        max-width: 100%;
+        border-radius: 32px;
+        box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Section umum */
+      .section {
+        padding: 70px 0;
+      }
+      .section-title {
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+        color: #1e2a2f;
+      }
+      .section-sub {
+        text-align: center;
+        color: #5c6e67;
+        max-width: 700px;
+        margin: 0 auto 48px auto;
+      }
+
+      /* Produk Grid */
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 32px;
+        margin-top: 20px;
+      }
+      .product-card {
+        background: white;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        transition: all 0.25s ease;
+        cursor: pointer;
+      }
+      .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
+      }
+      .product-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        background: #e9e5d8;
+      }
+      .product-info {
+        padding: 20px;
+      }
+      .product-info h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .price {
+        font-weight: 700;
+        color: #f4b942;
+        font-size: 1.3rem;
+        margin: 10px 0;
+      }
+      .product-desc {
+        color: #5b6e66;
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+      }
+      .btn-buy {
+        background: #2b7a3e;
+        border: none;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+        width: 100%;
+      }
+      .btn-buy:hover {
+        background: #1f5e2f;
+      }
+
+      /* Testimoni */
+      .testimonials {
+        background-color: #fff8ec;
+        border-radius: 48px;
+        padding: 48px 24px;
+      }
+      .testi-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+      }
+      .testi-card {
+        background: white;
+        border-radius: 32px;
+        padding: 28px;
+        max-width: 320px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        transition: 0.2s;
+      }
+      .testi-card i {
+        color: #f4b942;
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+      }
+      .testi-text {
+        font-style: italic;
+        margin: 12px 0;
+        color: #2d3e38;
+      }
+      .testi-name {
+        font-weight: 700;
+        margin-top: 10px;
+      }
+
+      /* CTA & Kontak */
+      .cta-section {
+        background: linear-gradient(145deg, #1f3e32, #2b5a42);
+        border-radius: 40px;
+        color: white;
+        text-align: center;
+        padding: 56px 24px;
+      }
+      .cta-section h2 {
+        font-size: 2rem;
+        margin-bottom: 16px;
+      }
+      .cta-section button {
+        background: #f4b942;
+        border: none;
+        padding: 14px 32px;
+        font-weight: 700;
+        font-size: 1rem;
+        border-radius: 40px;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+      .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 8px 20px;
+        border-radius: 60px;
       }
       footer {
-        background: #0e2a24;
-        color: #cbd5e1;
-        border-radius: 1.5rem 1.5rem 0 0;
+        text-align: center;
+        padding: 30px;
+        border-top: 1px solid #e9e0cf;
+        margin-top: 20px;
+        color: #5f7168;
       }
-      .total-savings {
-        background: #eef2f0;
-        border-radius: 1rem;
+
+      /* Modal Popup */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+      .modal-content {
+        background: white;
+        max-width: 400px;
+        width: 90%;
+        padding: 28px 24px;
+        border-radius: 32px;
+        text-align: center;
+        position: relative;
+        animation: fadeSlide 0.2s ease;
+      }
+      @keyframes fadeSlide {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .modal-content h3 {
+        margin-bottom: 16px;
+        font-size: 1.6rem;
+      }
+      .modal-content p {
+        margin-bottom: 20px;
+        color: #2c4b3e;
+      }
+      .close-modal {
+        background: #f4b942;
+        border: none;
+        padding: 8px 28px;
+        border-radius: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .whatsapp-link {
+        display: inline-block;
+        background: #25d366;
+        color: white;
+        text-decoration: none;
+        padding: 10px 24px;
+        border-radius: 40px;
+        margin-top: 12px;
+        font-weight: 600;
+      }
+      button {
+        font-family: "Inter", sans-serif;
       }
       @media (max-width: 768px) {
-        .hero-section {
-          padding: 2rem 0 1.5rem;
+        .navbar {
+          flex-direction: column;
         }
-        .stat-card {
-          margin-bottom: 0.75rem;
+        .hero-text h1 {
+          font-size: 2.3rem;
+        }
+        .hero-text p {
+          max-width: 100%;
+        }
+        .section-title {
+          font-size: 1.8rem;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm py-2">
+    <header>
       <div class="container">
-        <a class="navbar-brand fw-bold text-dark" href="#">
-          <i class="bi bi-graph-up-arrow text-success me-2"></i>WebBudget<span
-            class="text-success"
-            >Tracker</span
-          >
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarMain"
-          aria-controls="navbarMain"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarMain">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" href="#dashboard">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#tracker">Budget Tracker</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#insights">Insights</a>
-            </li>
+        <div class="navbar">
+          <div class="logo"><i class="fas fa-store"></i> UMKM Jaya</div>
+          <ul class="nav-links">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#produk">Produk</a></li>
+            <li><a href="#testimoni">Testimoni</a></li>
+            <li><a href="#kontak">Kontak</a></li>
           </ul>
-          <span
-            class="badge bg-success bg-opacity-10 text-success ms-2 px-3 py-2 rounded-pill"
-            ><i class="bi bi-calendar-week"></i> April 2026</span
-          >
-        </div>
-      </div>
-    </nav>
-
-    <!-- Hero / Title Section -->
-    <div class="hero-section">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-7">
-            <h1 class="display-5 fw-bold mb-3">📊 Web Budgeting Tracker</h1>
-            <p class="lead mb-3">
-              Kelola keuangan bisnis & peningkatan produktivitas dengan mudah.
-              Pantau pemasukan, pengeluaran, dan real-time budget.
-            </p>
-            <div class="d-flex gap-3 flex-wrap">
-              <a
-                href="#tracker"
-                class="btn btn-light rounded-pill px-4 fw-semibold"
-                ><i class="bi bi-plus-circle"></i> Tambah Transaksi</a
-              >
-              <a
-                href="#insights"
-                class="btn btn-outline-light rounded-pill px-4"
-                ><i class="bi bi-pie-chart"></i> Analisis</a
-              >
-            </div>
-          </div>
-          <div class="col-lg-5 d-none d-lg-block text-end">
-            <i class="bi bi-wallet2 display-1 opacity-75"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container" id="dashboard">
-      <!-- Ringkasan / stat cards dinamis -->
-      <div class="row g-4 mb-5">
-        <div class="col-md-6 col-lg-3">
-          <div
-            class="stat-card border-left-success"
-            style="border-left-color: #2c7a5e"
-          >
-            <span class="text-secondary text-uppercase small fw-semibold"
-              >Total Saldo</span
-            >
-            <h2 class="fw-bold mt-2 mb-0" id="totalBalance">Rp 0</h2>
-            <small class="text-muted"
-              ><i class="bi bi-calculator"></i> Pemasukan - Pengeluaran</small
-            >
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div
-            class="stat-card border-left-primary"
-            style="border-left-color: #0d6efd"
-          >
-            <span class="text-secondary text-uppercase small fw-semibold"
-              >Total Pemasukan</span
-            >
-            <h3 class="fw-bold mt-2 mb-0 text-success" id="totalIncome">
-              Rp 0
-            </h3>
-            <small
-              ><i class="bi bi-arrow-up-circle-fill text-success"></i> Semua
-              pemasukan</small
-            >
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div
-            class="stat-card border-left-danger"
-            style="border-left-color: #dc3545"
-          >
-            <span class="text-secondary text-uppercase small fw-semibold"
-              >Total Pengeluaran</span
-            >
-            <h3 class="fw-bold mt-2 mb-0 text-danger" id="totalExpense">
-              Rp 0
-            </h3>
-            <small
-              ><i class="bi bi-arrow-down-circle-fill text-danger"></i>
-              Pengeluaran tercatat</small
-            >
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div
-            class="stat-card border-left-warning"
-            style="border-left-color: #f4a100"
-          >
-            <span class="text-secondary text-uppercase small fw-semibold"
-              >Sisa Budget</span
-            >
-            <h3 class="fw-bold mt-2 mb-0" id="remainingBudget">Rp 0</h3>
-            <small
-              >Target bulanan:
-              <span id="targetBudgetDisplay">Rp 8.000.000</span></small
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Budget Goal + Productivity Progress -->
-    <div class="container mb-4">
-      <div class="row g-4">
-        <div class="col-lg-5">
-          <div class="card card-budget p-3 p-xl-4">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="fw-bold mb-0">
-                <i class="bi bi-trophy-fill text-warning"></i> Target Anggaran
-                Bulanan
-              </h5>
-              <button
-                class="btn btn-sm btn-outline-secondary rounded-pill"
-                data-bs-toggle="modal"
-                data-bs-target="#setBudgetModal"
-              >
-                Ubah target
-              </button>
-            </div>
-            <div class="mt-2">
-              <div class="d-flex justify-content-between">
-                <span>Pengeluaran saat ini</span>
-                <strong id="expenseVsTarget">Rp 0</strong>
-              </div>
-              <div class="progress-bar-custom mt-2">
-                <div
-                  class="progress-fill"
-                  id="budgetProgressFill"
-                  style="width: 0%"
-                ></div>
-              </div>
-              <small class="text-muted" id="budgetStatusMsg"
-                >Anda dalam batas aman</small
-              >
-            </div>
-            <hr class="my-3" />
-            <div class="d-flex align-items-center gap-2">
-              <i class="bi bi-lightbulb fs-4 text-warning"></i>
-              <span class="small"
-                >Produktivitas:
-                <strong id="productivityTip"
-                  >Catat pengeluaran untuk insight lebih baik</strong
-                ></span
-              >
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-7">
-          <div class="card card-budget p-3 p-xl-4">
-            <h5 class="fw-bold mb-3">
-              <i class="bi bi-graph-up"></i> Ringkasan Cepat
-            </h5>
-            <div class="row">
-              <div class="col-6">
-                <p class="mb-1 text-secondary">💵 Rata-rata harian</p>
-                <h5 id="dailyAvg">Rp 0</h5>
-              </div>
-              <div class="col-6">
-                <p class="mb-1 text-secondary">📆 Transaksi bulan ini</p>
-                <h5 id="transactionCount">0</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Form & Tabel Transaksi -->
-    <div class="container" id="tracker">
-      <div class="card card-budget p-4 mb-5">
-        <h4 class="fw-bold mb-3">
-          <i class="bi bi-journal-bookmark-fill"></i> Tambah Transaksi Baru
-        </h4>
-        <form id="transactionForm">
-          <div class="row g-3">
-            <div class="col-md-3">
-              <label class="form-label fw-semibold">Deskripsi</label>
-              <input
-                type="text"
-                class="form-control"
-                id="desc"
-                placeholder="Contoh: Pendapatan Jasa"
-                required
-              />
-            </div>
-            <div class="col-md-2">
-              <label class="form-label fw-semibold">Jumlah (Rp)</label>
-              <input
-                type="number"
-                class="form-control"
-                id="amount"
-                placeholder="0"
-                required
-              />
-            </div>
-            <div class="col-md-2">
-              <label class="form-label fw-semibold">Tipe</label>
-              <select class="form-select" id="type">
-                <option value="income">📈 Pemasukan</option>
-                <option value="expense">📉 Pengeluaran</option>
-              </select>
-            </div>
-            <div class="col-md-3">
-              <label class="form-label fw-semibold"
-                >Kategori (Bisnis/Produktivitas)</label
-              >
-              <select class="form-select" id="category">
-                <option>Pendapatan Bisnis</option>
-                <option>Gaji/Operasional</option>
-                <option>Marketing</option>
-                <option>Alat Produktivitas</option>
-                <option>Lainnya</option>
-              </select>
-            </div>
-            <div class="col-md-2 d-flex align-items-end">
-              <button type="submit" class="btn btn-primary-custom w-100">
-                <i class="bi bi-plus-lg"></i> Tambah
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <!-- Daftar Transaksi -->
-      <div class="card card-budget p-4 mb-5">
-        <div
-          class="d-flex flex-wrap justify-content-between align-items-center mb-3"
-        >
-          <h4 class="fw-bold mb-0">
-            <i class="bi bi-list-ul"></i> Riwayat Transaksi
-          </h4>
-          <button class="btn btn-sm btn-outline-custom" id="resetDemoBtn">
-            <i class="bi bi-arrow-repeat"></i> Reset Data Demo
+          <button class="btn-contact" id="contactNavBtn">
+            <i class="fas fa-phone-alt"></i> Hubungi Kami
           </button>
         </div>
-        <div class="table-responsive">
-          <table class="table table-transactions align-middle">
-            <thead>
-              <tr>
-                <th>Deskripsi</th>
-                <th>Kategori</th>
-                <th>Tipe</th>
-                <th>Jumlah (Rp)</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="transactionList"></tbody>
-          </table>
-        </div>
-        <div id="emptyMsg" class="text-center text-muted py-4 d-none">
-          Belum ada transaksi. Tambahkan data keuangan pertama Anda!
-        </div>
       </div>
-    </div>
+    </header>
 
-    <!-- Insights section -->
-    <div class="container mb-5" id="insights">
-      <div class="card card-budget p-4">
-        <h4 class="fw-bold mb-2">
-          <i class="bi bi-bar-chart-steps"></i> Wawasan Bisnis & Produktivitas
-        </h4>
-        <p class="text-secondary">
-          Berdasarkan pengeluaran vs pemasukan, berikut rekomendasi untuk
-          efisiensi keuangan.
-        </p>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="alert alert-light border rounded-3">
-              <i class="bi bi-piggy-bank-fill text-success me-2"></i>
-              <strong>Rasio Pengeluaran / Pendapatan</strong>
-              <div class="mt-2">
-                <span id="expenseIncomeRatio">0%</span> dari total pemasukan
-                digunakan untuk pengeluaran.
+    <main>
+      <!-- Hero Section -->
+      <section id="home">
+        <div class="container">
+          <div class="hero">
+            <div class="hero-text">
+              <div class="badge">
+                <i class="fas fa-leaf"></i> Produk Lokal Nusantara
               </div>
-              <div class="progress mt-2" style="height: 6px">
-                <div
-                  id="ratioProgress"
-                  class="progress-bar bg-warning"
-                  style="width: 0%"
-                ></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="alert alert-light border rounded-3">
-              <i class="bi bi-chat-dots-fill me-2"></i>
-              <strong>AI Saran Produktivitas</strong>
-              <p id="insightText" class="mb-0 mt-1">
-                Atur ulang budget dan kurangi pengeluaran tidak penting.
+              <h1>
+                Rasakan Keaslian <br />
+                <span>Kualitas UMKM</span> Terbaik
+              </h1>
+              <p>
+                Mendukung produk lokal berkualitas, dari tangan terampil
+                pengrajin & petani Indonesia. Belanja langsung, fresh &
+                autentik.
               </p>
+              <div class="hero-buttons">
+                <button class="btn-primary" id="exploreBtn">
+                  Jelajahi Produk <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn-outline" id="promoBtn">
+                  Dapatkan Promo
+                </button>
+              </div>
+            </div>
+            <div class="hero-image">
+              <img
+                src="https://picsum.photos/id/30/500/400"
+                alt="Produk UMKM Lokal"
+                style="width: 100%; max-width: 400px; border-radius: 28px"
+              />
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <!-- Modal set target budget -->
-    <div
-      class="modal fade"
-      id="setBudgetModal"
-      tabindex="-1"
-      aria-labelledby="budgetModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-4">
-          <div class="modal-header border-0">
-            <h5 class="modal-title fw-bold" id="budgetModalLabel">
-              Atur Target Anggaran Bulanan
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <label class="form-label">Target Budget (Rp)</label>
-            <input
-              type="number"
-              class="form-control"
-              id="targetBudgetInput"
-              placeholder="Masukkan nominal"
-            />
-            <small class="text-muted"
-              >Bandingkan dengan total pengeluaran bulan ini.</small
-            >
-          </div>
-          <div class="modal-footer border-0">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Batal
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary-custom"
-              id="saveBudgetBtn"
-            >
-              Simpan Target
-            </button>
+      <!-- Produk Unggulan -->
+      <section id="produk">
+        <div class="container">
+          <h2 class="section-title">✨ Produk Unggulan ✨</h2>
+          <p class="section-sub">
+            Pilihan terbaik dari UMKM lokal, kualitas premium dengan harga ramah
+            di kantong
+          </p>
+          <div class="products-grid" id="productsGrid"></div>
+        </div>
+      </section>
+
+      <!-- Testimoni -->
+      <section id="testimoni">
+        <div class="container">
+          <div class="testimonials">
+            <h2 class="section-title">Apa Kata Pelanggan?</h2>
+            <p class="section-sub">
+              Dipercaya oleh ratusan pelanggan yang merasakan sendiri kualitas
+              produk kami
+            </p>
+            <div class="testi-grid" id="testiGrid"></div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <footer class="mt-5 pt-4 pb-3 text-center">
-      <div class="container">
-        <p class="mb-0 small">
-          &copy; 2026 WebBudgetTracker — Solusi keuangan, bisnis & produktivitas
-          modern. <i class="bi bi-currency-exchange"></i> Kelola anggaran jadi
-          lebih cerdas.
-        </p>
-      </div>
+      <!-- CTA + Kontak -->
+      <section id="kontak">
+        <div class="container">
+          <div class="cta-section">
+            <h2>Siap Meningkatkan Usaha & Belanja Berkualitas?</h2>
+            <p>
+              Dapatkan informasi stok terbaru, konsultasi produk, dan penawaran
+              spesial untuk Anda.
+            </p>
+            <button id="ctaContactBtn">
+              <i class="fab fa-whatsapp"></i> Hubungi via WhatsApp
+            </button>
+            <div class="contact-info">
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i> Jl. Raya Dagang No. 88,
+                Yogyakarta
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i> umkmjaya@local.id
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-clock"></i> Senin - Sabtu, 09:00 - 17:00
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 UMKM Jaya - Membangun Ekonomi Kreatif Indonesia. 🌱</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Modal Popup -->
+    <div id="orderModal" class="modal">
+      <div class="modal-content">
+        <i
+          class="fas fa-shopping-cart"
+          style="font-size: 2.5rem; color: #f4b942"
+        ></i>
+        <h3>Pesan Sekarang</h3>
+        <p id="modalProductName">Produk pilihanmu</p>
+        <p>Hubungi kami langsung untuk pemesanan dan informasi lebih lanjut.</p>
+        <a href="#" id="modalWhatsappLink" class="whatsapp-link" target="_blank"
+          ><i class="fab fa-whatsapp"></i> Pesan via WhatsApp</a
+        >
+        <div style="margin-top: 16px">
+          <button class="close-modal" id="closeModalBtn">Tutup</button>
+        </div>
+      </div>
+    </div>
+
     <script>
-      // ----------------------------- DATA MODEL ---------------------------------
-      let transactions = []; // each: { id, description, amount, type, category }
-      let monthlyTarget = 8000000; // default Rp 8 juta
+      // Data Produk UMKM
+      const products = [
+        {
+          id: 1,
+          name: "Keripik Singkong Gurih",
+          price: "Rp 18.000",
+          desc: "Renyah, bumbu spesial original dan pedas, kemasan 250gr.",
+          img: "https://picsum.photos/id/132/400/300",
+          category: "makanan",
+        },
+        {
+          id: 2,
+          name: "Madu Hutan Murni",
+          price: "Rp 85.000",
+          desc: "Madu alami tanpa campuran, kaya manfaat, toples 350ml.",
+          img: "https://picsum.photos/id/104/400/300",
+          category: "minuman",
+        },
+        {
+          id: 3,
+          name: "Tenun Ikat NTT",
+          price: "Rp 290.000",
+          desc: "Kain tenun tangan motif tradisional, bahan halus.",
+          img: "https://picsum.photos/id/82/400/300",
+          category: "fashion",
+        },
+        {
+          id: 4,
+          name: "Kopi Arabika Gayo",
+          price: "Rp 55.000",
+          desc: "Biji kopi pilihan, aroma khas, 200gr sangrai sedang.",
+          img: "https://picsum.photos/id/284/400/300",
+          category: "minuman",
+        },
+      ];
 
-      // Helper: format Rupiah
-      function formatRupiah(angka) {
-        return new Intl.NumberFormat("id-ID", {
-          style: "currency",
-          currency: "IDR",
-          minimumFractionDigits: 0,
-        }).format(angka);
-      }
+      // Data Testimoni
+      const testimonials = [
+        {
+          name: "Sari Wulandari",
+          text: "Produk UMKM Jaya luar biasa! Keripik singkongnya renyah dan rasanya juara. Cepat sampai, recomended!",
+          rating: "⭐⭐⭐⭐⭐",
+        },
+        {
+          name: "Bambang Hidayat",
+          text: "Madu hutan asli banget, khasiatnya terasa. Saya jadi langganan rutin. Pelayanan ramah!",
+          rating: "⭐⭐⭐⭐⭐",
+        },
+        {
+          name: "Dewi Kartika",
+          text: "Tenun ikat sangat cantik, kualitas premium. Bangga pakai produk lokal. Terima kasih UMKM Jaya!",
+          rating: "⭐⭐⭐⭐⭐",
+        },
+      ];
 
-      // Hitung total income, expense, balance
-      function calculateTotals() {
-        let totalInc = 0,
-          totalExp = 0;
-        transactions.forEach((t) => {
-          if (t.type === "income") totalInc += t.amount;
-          else totalExp += t.amount;
+      // Render produk ke grid
+      function renderProducts() {
+        const grid = document.getElementById("productsGrid");
+        if (!grid) return;
+        grid.innerHTML = "";
+        products.forEach((product) => {
+          const card = document.createElement("div");
+          card.className = "product-card";
+          card.setAttribute("data-id", product.id);
+          card.innerHTML = `
+        <img class="product-img" src="${product.img}" alt="${product.name}" loading="lazy">
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <div class="price">${product.price}</div>
+          <div class="product-desc">${product.desc}</div>
+          <button class="btn-buy" data-name="${product.name}" data-price="${product.price}">Beli Sekarang</button>
+        </div>
+      `;
+          grid.appendChild(card);
         });
-        return { totalInc, totalExp, balance: totalInc - totalExp };
-      }
 
-      // Update all UI: stats, tabel, progress bar, insight, dll.
-      function refreshUI() {
-        const { totalInc, totalExp, balance } = calculateTotals();
-        const remaining = totalInc - totalExp;
-        document.getElementById("totalBalance").innerHTML =
-          formatRupiah(balance);
-        document.getElementById("totalIncome").innerHTML =
-          formatRupiah(totalInc);
-        document.getElementById("totalExpense").innerHTML =
-          formatRupiah(totalExp);
-        document.getElementById("remainingBudget").innerHTML =
-          formatRupiah(remaining);
-        document.getElementById("targetBudgetDisplay").innerHTML =
-          formatRupiah(monthlyTarget);
-
-        // Update progress budget (pengeluaran terhadap target)
-        const expensePercent = Math.min(100, (totalExp / monthlyTarget) * 100);
-        const progressFill = document.getElementById("budgetProgressFill");
-        progressFill.style.width = expensePercent + "%";
-        if (expensePercent >= 100) {
-          progressFill.style.backgroundColor = "#dc3545";
-          document.getElementById("budgetStatusMsg").innerHTML =
-            '<i class="bi bi-exclamation-triangle"></i> Perhatian! Pengeluaran melebihi target!';
-        } else if (expensePercent >= 80) {
-          progressFill.style.backgroundColor = "#f4a100";
-          document.getElementById("budgetStatusMsg").innerHTML =
-            "⚠️ Hampir mencapai batas anggaran.";
-        } else {
-          progressFill.style.backgroundColor = "#2c7a5e";
-          document.getElementById("budgetStatusMsg").innerHTML =
-            "✅ Dalam batas aman, produktif!";
-        }
-        document.getElementById("expenseVsTarget").innerHTML =
-          formatRupiah(totalExp) + " / " + formatRupiah(monthlyTarget);
-
-        // transaction count & daily avg (approx, asumsi 30 hari)
-        const count = transactions.length;
-        document.getElementById("transactionCount").innerText = count;
-        const dailyAvg = totalExp / 30;
-        document.getElementById("dailyAvg").innerHTML = formatRupiah(dailyAvg);
-
-        // Render transaction table
-        const tbody = document.getElementById("transactionList");
-        const emptyMsgDiv = document.getElementById("emptyMsg");
-        if (transactions.length === 0) {
-          tbody.innerHTML = "";
-          emptyMsgDiv.classList.remove("d-none");
-        } else {
-          emptyMsgDiv.classList.add("d-none");
-          tbody.innerHTML = transactions
-            .map(
-              (trans) => `
-        <tr>
-          <td class="fw-semibold">${escapeHtml(trans.description)}</td>
-          <td><span class="badge-category bg-light text-dark">${escapeHtml(trans.category)}</span></td>
-          <td>${trans.type === "income" ? '<span class="badge bg-success bg-opacity-25 text-success"><i class="bi bi-plus-circle"></i> Pemasukan</span>' : '<span class="badge bg-danger bg-opacity-25 text-danger"><i class="bi bi-dash-circle"></i> Pengeluaran</span>'}</td>
-          <td class="${trans.type === "income" ? "text-success fw-semibold" : "text-danger"}">${formatRupiah(trans.amount)}</td>
-          <td><button class="delete-btn" data-id="${trans.id}"><i class="bi bi-trash3"></i></button></td>
-        </tr>
-      `,
-            )
-            .join("");
-        }
-
-        // Ratio & insight
-        const ratio = totalInc > 0 ? (totalExp / totalInc) * 100 : 0;
-        document.getElementById("expenseIncomeRatio").innerHTML =
-          ratio.toFixed(1) + "%";
-        document.getElementById("ratioProgress").style.width =
-          Math.min(100, ratio) + "%";
-        let insightMsg = "";
-        if (ratio > 80)
-          insightMsg =
-            "⚠️ Pengeluaran sangat tinggi dibanding pendapatan. Prioritaskan efisiensi operasional & cut biaya tidak produktif.";
-        else if (ratio > 50)
-          insightMsg =
-            "📊 Pengeluaran cukup sehat. Coba alokasikan 20% untuk investasi bisnis atau peningkatan produktivitas.";
-        else
-          insightMsg =
-            "✨ Hebat! Anda mengelola pengeluaran dengan baik. Pertimbangkan untuk menambah investasi produktivitas digital.";
-        if (totalInc === 0 && transactions.length > 0)
-          insightMsg =
-            "💡 Tambah pemasukan untuk menyeimbangkan arus kas. Fokus pada revenue stream.";
-        else if (transactions.length === 0)
-          insightMsg =
-            "Mulai catat transaksi untuk mendapatkan insight keuangan cerdas.";
-        document.getElementById("insightText").innerHTML = insightMsg;
-
-        // Productivity tip
-        const tipEl = document.getElementById("productivityTip");
-        if (totalExp > monthlyTarget)
-          tipEl.innerHTML =
-            "📉 Pengeluaran melebihi target! Evaluasi belanja bisnis & gunakan tools gratis.";
-        else if (totalExp > 0 && totalInc > 0)
-          tipEl.innerHTML =
-            "💪 Terus pantau budget, tingkatkan efisiensi dengan catatan mingguan.";
-        else
-          tipEl.innerHTML =
-            "📝 Tambahkan transaksi untuk rekomendasi produktivitas personal.";
-      }
-
-      // Simple escape HTML
-      function escapeHtml(str) {
-        return str.replace(/[&<>]/g, function (m) {
-          if (m === "&") return "&amp;";
-          if (m === "<") return "&lt;";
-          if (m === ">") return "&gt;";
-          return m;
-        });
-      }
-
-      // Tambah transaksi
-      function addTransaction(description, amount, type, category) {
-        if (!description || amount <= 0 || isNaN(amount)) return false;
-        const newId = Date.now() + Math.random() * 1000;
-        transactions.unshift({
-          id: newId,
-          description: description.trim(),
-          amount: Number(amount),
-          type: type,
-          category: category,
-        });
-        refreshUI();
-        return true;
-      }
-
-      // Hapus transaksi
-      function deleteTransaction(id) {
-        transactions = transactions.filter((t) => t.id != id);
-        refreshUI();
-      }
-
-      // Inisialisasi data demo (contoh keuangan bisnis & produktivitas)
-      function loadDemoData() {
-        transactions = [];
-        const demoData = [
-          {
-            desc: "Pendapatan Konsultan Bisnis",
-            amount: 5500000,
-            type: "income",
-            category: "Pendapatan Bisnis",
-          },
-          {
-            desc: "Belanja Alat Produktivitas (Software)",
-            amount: 750000,
-            type: "expense",
-            category: "Alat Produktivitas",
-          },
-          {
-            desc: "Biaya Operasional & Server",
-            amount: 1200000,
-            type: "expense",
-            category: "Gaji/Operasional",
-          },
-          {
-            desc: "Google Ads Marketing",
-            amount: 600000,
-            type: "expense",
-            category: "Marketing",
-          },
-          {
-            desc: "Jasa Desain & Branding",
-            amount: 450000,
-            type: "expense",
-            category: "Lainnya",
-          },
-          {
-            desc: "Pendapatan Affiliate",
-            amount: 2100000,
-            type: "income",
-            category: "Pendapatan Bisnis",
-          },
-        ];
-        demoData.forEach((item, idx) => {
-          transactions.push({
-            id: Date.now() + idx + Math.random(),
-            description: item.desc,
-            amount: item.amount,
-            type: item.type,
-            category: item.category,
+        // Event listener untuk semua tombol beli
+        document.querySelectorAll(".btn-buy").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const productName = btn.getAttribute("data-name");
+            const productPrice = btn.getAttribute("data-price");
+            openModal(productName, productPrice);
           });
         });
-        refreshUI();
       }
 
-      // Reset data (hapus semua transaksi)
-      function resetAllData() {
-        if (
-          confirm(
-            "Reset semua data transaksi? Data demo akan diganti dengan contoh awal.",
-          )
-        ) {
-          loadDemoData();
-        }
-      }
-
-      // Simpan target budget dari modal
-      function setBudgetTarget(value) {
-        let newTarget = Number(value);
-        if (isNaN(newTarget) || newTarget <= 0) return false;
-        monthlyTarget = newTarget;
-        localStorage.setItem("budgetTarget", monthlyTarget);
-        refreshUI();
-        return true;
-      }
-
-      // Event listeners & localStorage
-      document.addEventListener("DOMContentLoaded", () => {
-        // Load target dari localStorage jika ada
-        const savedTarget = localStorage.getItem("budgetTarget");
-        if (savedTarget && !isNaN(Number(savedTarget)))
-          monthlyTarget = Number(savedTarget);
-        // Load demo data
-        loadDemoData();
-
-        // Form submit
-        const form = document.getElementById("transactionForm");
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const desc = document.getElementById("desc").value;
-          const amount = document.getElementById("amount").value;
-          const type = document.getElementById("type").value;
-          const category = document.getElementById("category").value;
-          if (!desc || !amount || amount <= 0) {
-            alert("Isi deskripsi dan jumlah yang valid (minimal 1 Rupiah)");
-            return;
-          }
-          addTransaction(desc, amount, type, category);
-          form.reset();
-          document.getElementById("desc").focus();
+      // Render testimoni
+      function renderTestimonials() {
+        const testiContainer = document.getElementById("testiGrid");
+        if (!testiContainer) return;
+        testiContainer.innerHTML = "";
+        testimonials.forEach((t) => {
+          const card = document.createElement("div");
+          card.className = "testi-card";
+          card.innerHTML = `
+        <i class="fas fa-quote-left"></i>
+        <div>${t.rating}</div>
+        <p class="testi-text">"${t.text}"</p>
+        <div class="testi-name">- ${t.name}</div>
+      `;
+          testiContainer.appendChild(card);
         });
+      }
 
-        // Delete listener (delegation)
-        document
-          .getElementById("transactionList")
-          .addEventListener("click", (e) => {
-            const btn = e.target.closest(".delete-btn");
-            if (btn && btn.dataset.id) {
-              if (confirm("Hapus transaksi ini?"))
-                deleteTransaction(Number(btn.dataset.id));
+      // Modal logic
+      const modal = document.getElementById("orderModal");
+      const modalProductNameSpan = document.getElementById("modalProductName");
+      const modalWhatsappLink = document.getElementById("modalWhatsappLink");
+      let currentProduct = { name: "", price: "" };
+
+      function openModal(productName, productPrice) {
+        currentProduct = { name: productName, price: productPrice };
+        modalProductNameSpan.innerText = `${productName} - ${productPrice}`;
+        // Set WhatsApp link
+        const message = `Halo UMKM Jaya, saya tertarik untuk membeli ${productName} (${productPrice}). Apakah masih tersedia?`;
+        const encodedMsg = encodeURIComponent(message);
+        modalWhatsappLink.href = `https://wa.me/6281234567890?text=${encodedMsg}`; // contoh nomor WA bisnis
+        modal.style.display = "flex";
+      }
+
+      function closeModal() {
+        modal.style.display = "none";
+      }
+
+      // Global WA untuk kontak (tanpa produk spesifik)
+      function openWhatsappGeneric() {
+        const msg = encodeURIComponent(
+          "Halo, saya tertarik dengan produk UMKM Jaya. Mohon info lebih lanjut.",
+        );
+        window.open(`https://wa.me/6281234567890?text=${msg}`, "_blank");
+      }
+
+      // Smooth scroll & navigasi
+      function setupSmoothScroll() {
+        const links = document.querySelectorAll(".nav-links a");
+        links.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
             }
           });
-
-        // Reset demo button
-        document
-          .getElementById("resetDemoBtn")
-          .addEventListener("click", () => resetAllData());
-
-        // Simpan target budget modal
-        const saveBtn = document.getElementById("saveBudgetBtn");
-        const targetInput = document.getElementById("targetBudgetInput");
-        saveBtn.addEventListener("click", () => {
-          const val = targetInput.value;
-          if (setBudgetTarget(val)) {
-            const modalEl = document.getElementById("setBudgetModal");
-            const modal = bootstrap.Modal.getInstance(modalEl);
-            modal.hide();
-            targetInput.value = "";
-          } else {
-            alert("Masukkan target budget yang valid (angka positif)");
-          }
         });
-      });
+        // tombol explore produk
+        const exploreBtn = document.getElementById("exploreBtn");
+        if (exploreBtn) {
+          exploreBtn.addEventListener("click", () => {
+            document
+              .getElementById("produk")
+              .scrollIntoView({ behavior: "smooth" });
+          });
+        }
+        // promo button (alert interaktif)
+        const promoBtn = document.getElementById("promoBtn");
+        if (promoBtn) {
+          promoBtn.addEventListener("click", () => {
+            alert(
+              "🎉 Promo spesial! Dapatkan diskon 10% untuk pembelian pertama. Hubungi kami via WhatsApp!",
+            );
+          });
+        }
+      }
+
+      // Event contact button navbar & CTA
+      function bindContactEvents() {
+        const contactNav = document.getElementById("contactNavBtn");
+        const ctaBtn = document.getElementById("ctaContactBtn");
+        if (contactNav)
+          contactNav.addEventListener("click", openWhatsappGeneric);
+        if (ctaBtn) ctaBtn.addEventListener("click", openWhatsappGeneric);
+      }
+
+      // Tambahkan interaksi sederhana, animasi hover, dan notifikasi beli
+      function addExtraInteractions() {
+        // Menampilkan notifikasi singkat ketika produk diklik (card)
+        const productCards = document.getElementById("productsGrid");
+        if (productCards) {
+          productCards.addEventListener("click", (e) => {
+            let targetCard = e.target.closest(".product-card");
+            if (targetCard && !e.target.classList.contains("btn-buy")) {
+              const productTitle = targetCard.querySelector("h3")?.innerText;
+              if (productTitle) {
+                alert(
+                  `✨ ${productTitle} — produk unggulan UMKM Nusantara. Klik "Beli Sekarang" untuk memesan!`,
+                );
+              }
+            }
+          });
+        }
+      }
+
+      // Modal close handler
+      function modalHandlers() {
+        const closeBtn = document.getElementById("closeModalBtn");
+        if (closeBtn) closeBtn.addEventListener("click", closeModal);
+        window.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      // Inisialisasi halaman & data dinamis
+      function init() {
+        renderProducts();
+        renderTestimonials();
+        setupSmoothScroll();
+        bindContactEvents();
+        addExtraInteractions();
+        modalHandlers();
+      }
+
+      init();
     </script>
   </body>
 </html>
