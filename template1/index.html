@@ -1,1 +1,502 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>UMKM Jaya - Produk Lokal Berkualitas</title>
+  <!-- Bootstrap 5 CSS + Icons + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts (inter & poppins) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefcf5;
+      scroll-behavior: smooth;
+    }
+    h1, h2, h3, h4, .navbar-brand, .btn {
+      font-family: 'Poppins', sans-serif;
+    }
+    /* navbar styling */
+    .navbar {
+      background-color: rgba(255, 248, 235, 0.96);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      transition: all 0.2s;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: -0.3px;
+      color: #b45f2b !important;
+    }
+    .nav-link {
+      font-weight: 500;
+      color: #4a3729 !important;
+      margin: 0 6px;
+      transition: 0.2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: #d97a2b !important;
+    }
+    .btn-umkm {
+      background-color: #d97a2b;
+      color: white;
+      border-radius: 40px;
+      padding: 10px 28px;
+      font-weight: 600;
+      transition: 0.25s;
+      border: none;
+    }
+    .btn-umkm:hover {
+      background-color: #b45f2b;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(185, 87, 27, 0.2);
+    }
+    .btn-outline-umkm {
+      border: 2px solid #d97a2b;
+      background: transparent;
+      color: #d97a2b;
+      border-radius: 40px;
+      font-weight: 600;
+      padding: 8px 24px;
+      transition: 0.2s;
+    }
+    .btn-outline-umkm:hover {
+      background: #d97a2b;
+      color: white;
+    }
+    /* hero section */
+    .hero {
+      background: linear-gradient(120deg, #fff3e6 0%, #ffe6d5 100%);
+      padding: 100px 0 70px;
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: #2c221b;
+    }
+    .hero .highlight {
+      color: #d97a2b;
+      position: relative;
+      display: inline-block;
+    }
+    .hero-img {
+      border-radius: 2rem;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);
+      max-width: 100%;
+    }
+    /* section title */
+    .section-title {
+      font-weight: 700;
+      font-size: 2.2rem;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: #d97a2b;
+      border-radius: 4px;
+    }
+    .text-center .section-title:after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    /* produk card */
+    .product-card {
+      border: none;
+      border-radius: 1.5rem;
+      background: white;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+      overflow: hidden;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+    }
+    .product-img {
+      height: 220px;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+    .product-card:hover .product-img {
+      transform: scale(1.02);
+    }
+    .price {
+      font-weight: 700;
+      color: #d97a2b;
+      font-size: 1.4rem;
+    }
+    /* testimoni */
+    .testimonial-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+      transition: 0.2s;
+      height: 100%;
+      border: 1px solid #ffefe2;
+    }
+    .testimonial-card i {
+      font-size: 2rem;
+      color: #ffb77c;
+      opacity: 0.7;
+    }
+    .avatar {
+      width: 55px;
+      height: 55px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    /* kontak & footer */
+    .kontak-section {
+      background: #2c221b;
+      color: #fdf4ea;
+      border-radius: 2rem 2rem 0 0;
+    }
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,240,0.1);
+      border-radius: 50%;
+      color: #ffdec2;
+      font-size: 1.5rem;
+      transition: 0.2s;
+    }
+    .social-icons a:hover {
+      background: #d97a2b;
+      color: white;
+      transform: translateY(-3px);
+    }
+    footer {
+      background-color: #1e1712;
+      color: #aa9f96;
+    }
+    /* responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .hero {
+        padding: 70px 0 50px;
+      }
+    }
+    /* whatsapp float button (opsional interaktif) */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-weight: 600;
+      box-shadow: 0 6px 18px rgba(37,211,102,0.3);
+      z-index: 99;
+      transition: 0.2s;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+    }
+    .whatsapp-float:hover {
+      background-color: #20b859;
+      transform: scale(1.02);
+      color: white;
+    }
+    @media (max-width: 576px) {
+      .whatsapp-float span {
+        display: none;
+      }
+      .whatsapp-float {
+        padding: 12px;
+        border-radius: 50%;
+      }
+      .whatsapp-float i {
+        margin: 0;
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
 
+<!-- NAVBAR BOOTSTRAP 5 -->
+<nav class="navbar navbar-expand-lg sticky-top py-3">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <i class="bi bi-shop me-2"></i>UMKM Jaya
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarUMKM" aria-controls="navbarUMKM" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarUMKM">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+        <li class="nav-item"><a class="nav-link active" href="#home">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link" href="#produk">Produk</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimoni">Testimoni</a></li>
+        <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a class="btn btn-umkm btn-sm" href="#kontak"><i class="bi bi-cart-check me-1"></i>Pesan Sekarang</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section id="home" class="hero">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="badge bg-warning bg-opacity-25 text-warning-emphasis px-3 py-2 rounded-pill mb-3"><i class="bi bi-star-fill me-1"></i> UMKM Pilihan Lokal</span>
+        <h1 class="mb-4">Rasakan Kelezatan <span class="highlight">Produk Nusantara</span> Berkualitas Tinggi</h1>
+        <p class="lead mb-4 text-secondary">Kami hadir untuk mendukung pelaku UMKM dengan produk rumahan terbaik, mulai dari camilan sehat hingga kerajinan tangan unik. Belanja langsung dari pengrajin.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#produk" class="btn btn-umkm px-4 py-3"><i class="bi bi-grid-3x3-gap-fill me-2"></i>Lihat Koleksi</a>
+          <a href="#kontak" class="btn btn-outline-umkm px-4 py-3"><i class="bi bi-whatsapp me-2"></i>Hubungi Kami</a>
+        </div>
+        <div class="mt-4 d-flex gap-4">
+          <div><i class="bi bi-truck text-warning fs-4"></i> <span class="fw-semibold">Gratis Ongkir*</span></div>
+          <div><i class="bi bi-shield-check text-warning fs-4"></i> <span class="fw-semibold">Garansi 100%</span></div>
+          <div><i class="bi bi-clock-history text-warning fs-4"></i> <span class="fw-semibold">Respon Cepat</span></div>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center">
+        <img src="https://placehold.co/600x450/FFE0B5/8B5A2B?text=Produk+UMKM+Premium" alt="Hero UMKM" class="hero-img img-fluid" style="background: #f7e9db; object-fit: cover;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUK UNGGULAN -->
+<section id="produk" class="py-5">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <span class="text-uppercase text-warning fw-semibold tracking-wide">Best Seller</span>
+      <h2 class="section-title">Produk Unggulan Kami</h2>
+      <p class="text-muted mt-3">Pilihan favorit dari pelanggan setia UMKM Jaya</p>
+    </div>
+    <div class="row g-4" id="product-list">
+      <!-- produk akan di load via JS dan juga statis fallback, tapi kita tampilkan dinamis dengan JS -->
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<section id="testimoni" class="py-5 bg-light">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <i class="bi bi-chat-quote fs-1 text-warning"></i>
+      <h2 class="section-title mt-2">Apa Kata Mereka?</h2>
+      <p class="text-muted">Dipercaya ratusan pelanggan dari berbagai kota</p>
+    </div>
+    <div class="row g-4" id="testimoni-list">
+      <!-- dynamic testimoni from JS -->
+    </div>
+  </div>
+</section>
+
+<!-- KONTAK & LOKASI -->
+<section id="kontak" class="kontak-section py-5">
+  <div class="container py-4">
+    <div class="row g-5">
+      <div class="col-md-6">
+        <h3 class="fw-bold mb-3"><i class="bi bi-envelope-paper-fill me-2"></i>Hubungi Kami</h3>
+        <p class="mb-4 opacity-75">Butuh informasi lebih lanjut atau mau pesan dalam jumlah banyak? Tim kami siap membantu.</p>
+        <ul class="list-unstyled">
+          <li class="mb-3"><i class="bi bi-whatsapp me-3 fs-5"></i> +62 812 3456 7890</li>
+          <li class="mb-3"><i class="bi bi-envelope me-3 fs-5"></i> halo@umkmjaya.co.id</li>
+          <li class="mb-3"><i class="bi bi-geo-alt me-3 fs-5"></i> Jl. Kerajinan No. 45, Yogyakarta</li>
+        </ul>
+        <div class="social-icons mt-4 d-flex gap-3">
+          <a href="#" target="_blank"><i class="bi bi-instagram"></i></a>
+          <a href="#" target="_blank"><i class="bi bi-facebook"></i></a>
+          <a href="#" target="_blank"><i class="bi bi-tiktok"></i></a>
+          <a href="#" target="_blank"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h3 class="fw-bold mb-3"><i class="bi bi-clock me-2"></i>Jam Operasional</h3>
+        <p class="mb-2">Senin - Jumat : 08.00 - 17.00 WIB</p>
+        <p class="mb-4">Sabtu & Minggu : 09.00 - 14.00 WIB (online tetap aktif)</p>
+        <div class="bg-dark rounded-4 p-3 bg-opacity-25">
+          <i class="bi bi-megaphone fs-5 me-2"></i> 
+          <span>Butuh konsultasi produk? Klik tombol WhatsApp di pojok kanan bawah.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-4 text-center">
+  <div class="container">
+    <p class="mb-0">&copy; 2025 UMKM Jaya - Mendukung Produk Lokal Indonesia. Dibangun dengan <i class="bi bi-heart-fill text-danger"></i> untuk para pelaku usaha.</p>
+    <small class="text-muted">*Syarat & ketentuan berlaku untuk gratis ongkir area tertentu.</small>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/6281234567890?text=Halo%20UMKM%20Jaya%2C%20saya%20tertarik%20dengan%20produk%20Anda" class="whatsapp-float" target="_blank">
+  <i class="bi bi-whatsapp fs-5"></i> <span>Chat via WA</span>
+</a>
+
+<!-- Bootstrap JS + Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Data produk UMKM (mudah diedit)
+  const products = [
+    { id: 1, name: "Keripik Singkong Balado", price: 15000, image: "https://placehold.co/400x300/F5E2C8/9B4B1E?text=Keripik+Balado", desc: "Rumahan, renyah, pedas manis original." },
+    { id: 2, name: "Madu Hutan Asli", price: 85000, image: "https://placehold.co/400x300/F5E2C8/9B4B1E?text=Madu+Hutan", desc: "Murni tanpa pemanis, khas Nusantara." },
+    { id: 3, name: "Batik Tulis Klasik", price: 275000, image: "https://placehold.co/400x300/F5E2C8/9B4B1E?text=Batik+Tulis", desc: "Motif tradisional, berkualitas tinggi." },
+    { id: 4, name: "Kopi Arabika Gayo", price: 55000, image: "https://placehold.co/400x300/F5E2C8/9B4B1E?text=Kopi+Gayo", desc: "Bubuk kopi premium, aroma khas." },
+    { id: 5, name: "Rempeyek Kacang", price: 12000, image: "https://placehold.co/400x300/F5E2C8/9B4B1E?text=Rempeyek", desc: "Gurih dan renyah, cocok untuk camilan." },
+    { id: 6, name: "Kerajinan Anyaman Bambu", price: 95000, image: "https://placehold.co/400x300/F5E2C8/9B4B1E?text=Anyaman+Bambu", desc: "Tas unik ramah lingkungan." }
+  ];
+
+  // Data Testimoni (realistis)
+  const testimonials = [
+    { id: 1, name: "Siti Aisyah", role: "Ibu Rumah Tangga", text: "Produk UMKM Jaya luar biasa! Keripik singkongnya paling enak, dan pelayanan sangat ramah. Pengiriman cepat.", avatar: "https://randomuser.me/api/portraits/women/68.jpg" },
+    { id: 2, name: "Bambang Wijaya", role: "Owner Cafe", text: "Kopi Gayo favorit di kafe kami. Kualitas konsisten dan harga bersaing. Rekomendasi untuk pecinta kopi.", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },
+    { id: 3, name: "Dewi Lestari", role: "Kolektor Batik", text: "Batik tulis sangat detail dan motifnya eksklusif. Terima kasih UMKM Jaya telah melestarikan budaya!", avatar: "https://randomuser.me/api/portraits/women/45.jpg" }
+  ];
+
+  // Render Produk ke dalam container
+  function renderProducts() {
+    const productContainer = document.getElementById('product-list');
+    if (!productContainer) return;
+    let html = '';
+    products.forEach(product => {
+      html += `
+        <div class="col-md-6 col-lg-4">
+          <div class="card product-card h-100">
+            <img src="${product.image}" class="card-img-top product-img" alt="${product.name}" loading="lazy">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">${product.name}</h5>
+              <p class="card-text text-muted small">${product.desc}</p>
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <span class="price">Rp ${product.price.toLocaleString('id-ID')}</span>
+                <button class="btn btn-sm btn-outline-umkm order-btn" data-product="${product.name}" data-price="${product.price}">
+                  <i class="bi bi-bag-plus"></i> Pesan
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    productContainer.innerHTML = html;
+
+    // tambahkan event listener untuk tombol pesan (redirect to WA + custom message)
+    document.querySelectorAll('.order-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const productName = btn.getAttribute('data-product');
+        const price = btn.getAttribute('data-price');
+        const message = `Halo UMKM Jaya, saya tertarik untuk membeli produk *${productName}* (Rp ${parseInt(price).toLocaleString('id-ID')}). Apakah tersedia?`;
+        const waUrl = `https://wa.me/6281234567890?text=${encodeURIComponent(message)}`;
+        window.open(waUrl, '_blank');
+      });
+    });
+  }
+
+  // Render Testimoni
+  function renderTestimonials() {
+    const testimoniContainer = document.getElementById('testimoni-list');
+    if (!testimoniContainer) return;
+    let html = '';
+    testimonials.forEach(t => {
+      html += `
+        <div class="col-md-6 col-lg-4">
+          <div class="testimonial-card">
+            <i class="bi bi-quote"></i>
+            <p class="mt-2 fst-italic">"${t.text}"</p>
+            <div class="d-flex align-items-center mt-3">
+              <img src="${t.avatar}" class="avatar me-3" alt="${t.name}" onerror="this.src='https://placehold.co/55x55/EDC9A0/6B3E1A?text=User'">
+              <div>
+                <h6 class="mb-0 fw-bold">${t.name}</h6>
+                <small class="text-muted">${t.role}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    testimoniContainer.innerHTML = html;
+  }
+
+  // Smooth scroll untuk anchor links (opsional tapi nyaman)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === "#" || targetId === "") return;
+      const targetElem = document.querySelector(targetId);
+      if (targetElem) {
+        e.preventDefault();
+        targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // optional: update active class on nav
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+        const correspondingNav = document.querySelector(`.nav-link[href="${targetId}"]`);
+        if (correspondingNav) correspondingNav.classList.add('active');
+      }
+    });
+  });
+
+  // aktifin navbar active saat scroll (improvement)
+  window.addEventListener('scroll', () => {
+    let sections = document.querySelectorAll('section[id]');
+    let scrollPos = window.scrollY + 100;
+    sections.forEach(section => {
+      let offsetTop = section.offsetTop;
+      let offsetHeight = section.offsetHeight;
+      let id = section.getAttribute('id');
+      if (scrollPos >= offsetTop && scrollPos < offsetTop + offsetHeight) {
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  });
+
+  // Animasi sederhana pada load
+  document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    renderTestimonials();
+    // tambahan efek tooltip bootstrap bisa dipakai tapi tidak wajib
+    // mengganti fallback image jika broken (untuk placeholder sudah aman)
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+      img.addEventListener('error', function() {
+        this.src = 'https://placehold.co/600x450/EEDCC9/B45F2B?text=UMKM+Jaya';
+      });
+    });
+  });
+</script>
+</body>
+</html>
