@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Web Budgeting Tracker | Finances & Productivity</title>
+    <!-- Bootstrap 5 CSS + Icons + Google Fonts -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "Inter", sans-serif;
+      }
+      body {
+        background: #f4f7fc;
+        scroll-behavior: smooth;
+      }
+      /* navbar custom */
+      .navbar-brand {
+        font-weight: 700;
+        letter-spacing: -0.3px;
+      }
+      .hero-section {
+        background: linear-gradient(135deg, #0b2b26 0%, #1e4a3b 100%);
+        color: white;
+        border-radius: 0 0 2rem 2rem;
+        padding: 3rem 0 2.5rem 0;
+        margin-bottom: 2rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+      .card-budget {
+        border: none;
+        border-radius: 1.5rem;
+        box-shadow: 0 12px 28px rgba(0, 32, 32, 0.08);
+        transition: transform 0.2s ease;
+        background: white;
+      }
+      .card-budget:hover {
+        transform: translateY(-3px);
+      }
+      .stat-card {
+        background: white;
+        border-radius: 1.25rem;
+        padding: 1rem 1.2rem;
+        box-shadow:
+          0 5px 15px rgba(0, 0, 0, 0.02),
+          0 2px 6px rgba(0, 0, 0, 0.05);
+        border-left: 5px solid;
+        transition: all 0.2s;
+      }
+      .progress-bar-custom {
+        height: 10px;
+        border-radius: 10px;
+        background-color: #e9ecef;
+      }
+      .progress-fill {
+        background: #2c7a5e;
+        border-radius: 10px;
+        height: 100%;
+        width: 0%;
+        transition: width 0.35s ease;
+      }
+      .badge-category {
+        font-size: 0.75rem;
+        font-weight: 500;
+        padding: 0.35rem 0.75rem;
+        border-radius: 40px;
+      }
+      .btn-primary-custom {
+        background: #1e4a3b;
+        border: none;
+        border-radius: 40px;
+        padding: 0.5rem 1.2rem;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+      .btn-primary-custom:hover {
+        background: #0f3328;
+        transform: scale(0.98);
+      }
+      .btn-outline-custom {
+        border-radius: 40px;
+        border: 1px solid #1e4a3b;
+        color: #1e4a3b;
+        font-weight: 500;
+      }
+      .btn-outline-custom:hover {
+        background: #eef3f0;
+        border-color: #1e4a3b;
+      }
+      .table-transactions th {
+        background-color: #f8fafc;
+        font-weight: 600;
+        border-bottom-width: 1px;
+      }
+      .delete-btn {
+        background: none;
+        border: none;
+        color: #b91c1c;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: 0.1s;
+      }
+      .delete-btn:hover {
+        color: #7f1a1a;
+        transform: scale(1.1);
+      }
+      footer {
+        background: #0e2a24;
+        color: #cbd5e1;
+        border-radius: 1.5rem 1.5rem 0 0;
+      }
+      .total-savings {
+        background: #eef2f0;
+        border-radius: 1rem;
+      }
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 2rem 0 1.5rem;
+        }
+        .stat-card {
+          margin-bottom: 0.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm py-2">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-dark" href="#">
+          <i class="bi bi-graph-up-arrow text-success me-2"></i>WebBudget<span
+            class="text-success"
+            >Tracker</span
+          >
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarMain"
+          aria-controls="navbarMain"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="#dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#tracker">Budget Tracker</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#insights">Insights</a>
+            </li>
+          </ul>
+          <span
+            class="badge bg-success bg-opacity-10 text-success ms-2 px-3 py-2 rounded-pill"
+            ><i class="bi bi-calendar-week"></i> April 2026</span
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero / Title Section -->
+    <div class="hero-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-7">
+            <h1 class="display-5 fw-bold mb-3">📊 Web Budgeting Tracker</h1>
+            <p class="lead mb-3">
+              Kelola keuangan bisnis & peningkatan produktivitas dengan mudah.
+              Pantau pemasukan, pengeluaran, dan real-time budget.
+            </p>
+            <div class="d-flex gap-3 flex-wrap">
+              <a
+                href="#tracker"
+                class="btn btn-light rounded-pill px-4 fw-semibold"
+                ><i class="bi bi-plus-circle"></i> Tambah Transaksi</a
+              >
+              <a
+                href="#insights"
+                class="btn btn-outline-light rounded-pill px-4"
+                ><i class="bi bi-pie-chart"></i> Analisis</a
+              >
+            </div>
+          </div>
+          <div class="col-lg-5 d-none d-lg-block text-end">
+            <i class="bi bi-wallet2 display-1 opacity-75"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="dashboard">
+      <!-- Ringkasan / stat cards dinamis -->
+      <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-3">
+          <div
+            class="stat-card border-left-success"
+            style="border-left-color: #2c7a5e"
+          >
+            <span class="text-secondary text-uppercase small fw-semibold"
+              >Total Saldo</span
+            >
+            <h2 class="fw-bold mt-2 mb-0" id="totalBalance">Rp 0</h2>
+            <small class="text-muted"
+              ><i class="bi bi-calculator"></i> Pemasukan - Pengeluaran</small
+            >
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div
+            class="stat-card border-left-primary"
+            style="border-left-color: #0d6efd"
+          >
+            <span class="text-secondary text-uppercase small fw-semibold"
+              >Total Pemasukan</span
+            >
+            <h3 class="fw-bold mt-2 mb-0 text-success" id="totalIncome">
+              Rp 0
+            </h3>
+            <small
+              ><i class="bi bi-arrow-up-circle-fill text-success"></i> Semua
+              pemasukan</small
+            >
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div
+            class="stat-card border-left-danger"
+            style="border-left-color: #dc3545"
+          >
+            <span class="text-secondary text-uppercase small fw-semibold"
+              >Total Pengeluaran</span
+            >
+            <h3 class="fw-bold mt-2 mb-0 text-danger" id="totalExpense">
+              Rp 0
+            </h3>
+            <small
+              ><i class="bi bi-arrow-down-circle-fill text-danger"></i>
+              Pengeluaran tercatat</small
+            >
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div
+            class="stat-card border-left-warning"
+            style="border-left-color: #f4a100"
+          >
+            <span class="text-secondary text-uppercase small fw-semibold"
+              >Sisa Budget</span
+            >
+            <h3 class="fw-bold mt-2 mb-0" id="remainingBudget">Rp 0</h3>
+            <small
+              >Target bulanan:
+              <span id="targetBudgetDisplay">Rp 8.000.000</span></small
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Budget Goal + Productivity Progress -->
+    <div class="container mb-4">
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div class="card card-budget p-3 p-xl-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h5 class="fw-bold mb-0">
+                <i class="bi bi-trophy-fill text-warning"></i> Target Anggaran
+                Bulanan
+              </h5>
+              <button
+                class="btn btn-sm btn-outline-secondary rounded-pill"
+                data-bs-toggle="modal"
+                data-bs-target="#setBudgetModal"
+              >
+                Ubah target
+              </button>
+            </div>
+            <div class="mt-2">
+              <div class="d-flex justify-content-between">
+                <span>Pengeluaran saat ini</span>
+                <strong id="expenseVsTarget">Rp 0</strong>
+              </div>
+              <div class="progress-bar-custom mt-2">
+                <div
+                  class="progress-fill"
+                  id="budgetProgressFill"
+                  style="width: 0%"
+                ></div>
+              </div>
+              <small class="text-muted" id="budgetStatusMsg"
+                >Anda dalam batas aman</small
+              >
+            </div>
+            <hr class="my-3" />
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-lightbulb fs-4 text-warning"></i>
+              <span class="small"
+                >Produktivitas:
+                <strong id="productivityTip"
+                  >Catat pengeluaran untuk insight lebih baik</strong
+                ></span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="card card-budget p-3 p-xl-4">
+            <h5 class="fw-bold mb-3">
+              <i class="bi bi-graph-up"></i> Ringkasan Cepat
+            </h5>
+            <div class="row">
+              <div class="col-6">
+                <p class="mb-1 text-secondary">💵 Rata-rata harian</p>
+                <h5 id="dailyAvg">Rp 0</h5>
+              </div>
+              <div class="col-6">
+                <p class="mb-1 text-secondary">📆 Transaksi bulan ini</p>
+                <h5 id="transactionCount">0</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form & Tabel Transaksi -->
+    <div class="container" id="tracker">
+      <div class="card card-budget p-4 mb-5">
+        <h4 class="fw-bold mb-3">
+          <i class="bi bi-journal-bookmark-fill"></i> Tambah Transaksi Baru
+        </h4>
+        <form id="transactionForm">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <label class="form-label fw-semibold">Deskripsi</label>
+              <input
+                type="text"
+                class="form-control"
+                id="desc"
+                placeholder="Contoh: Pendapatan Jasa"
+                required
+              />
+            </div>
+            <div class="col-md-2">
+              <label class="form-label fw-semibold">Jumlah (Rp)</label>
+              <input
+                type="number"
+                class="form-control"
+                id="amount"
+                placeholder="0"
+                required
+              />
+            </div>
+            <div class="col-md-2">
+              <label class="form-label fw-semibold">Tipe</label>
+              <select class="form-select" id="type">
+                <option value="income">📈 Pemasukan</option>
+                <option value="expense">📉 Pengeluaran</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label fw-semibold"
+                >Kategori (Bisnis/Produktivitas)</label
+              >
+              <select class="form-select" id="category">
+                <option>Pendapatan Bisnis</option>
+                <option>Gaji/Operasional</option>
+                <option>Marketing</option>
+                <option>Alat Produktivitas</option>
+                <option>Lainnya</option>
+              </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+              <button type="submit" class="btn btn-primary-custom w-100">
+                <i class="bi bi-plus-lg"></i> Tambah
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Daftar Transaksi -->
+      <div class="card card-budget p-4 mb-5">
+        <div
+          class="d-flex flex-wrap justify-content-between align-items-center mb-3"
+        >
+          <h4 class="fw-bold mb-0">
+            <i class="bi bi-list-ul"></i> Riwayat Transaksi
+          </h4>
+          <button class="btn btn-sm btn-outline-custom" id="resetDemoBtn">
+            <i class="bi bi-arrow-repeat"></i> Reset Data Demo
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-transactions align-middle">
+            <thead>
+              <tr>
+                <th>Deskripsi</th>
+                <th>Kategori</th>
+                <th>Tipe</th>
+                <th>Jumlah (Rp)</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="transactionList"></tbody>
+          </table>
+        </div>
+        <div id="emptyMsg" class="text-center text-muted py-4 d-none">
+          Belum ada transaksi. Tambahkan data keuangan pertama Anda!
+        </div>
+      </div>
+    </div>
+
+    <!-- Insights section -->
+    <div class="container mb-5" id="insights">
+      <div class="card card-budget p-4">
+        <h4 class="fw-bold mb-2">
+          <i class="bi bi-bar-chart-steps"></i> Wawasan Bisnis & Produktivitas
+        </h4>
+        <p class="text-secondary">
+          Berdasarkan pengeluaran vs pemasukan, berikut rekomendasi untuk
+          efisiensi keuangan.
+        </p>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="alert alert-light border rounded-3">
+              <i class="bi bi-piggy-bank-fill text-success me-2"></i>
+              <strong>Rasio Pengeluaran / Pendapatan</strong>
+              <div class="mt-2">
+                <span id="expenseIncomeRatio">0%</span> dari total pemasukan
+                digunakan untuk pengeluaran.
+              </div>
+              <div class="progress mt-2" style="height: 6px">
+                <div
+                  id="ratioProgress"
+                  class="progress-bar bg-warning"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="alert alert-light border rounded-3">
+              <i class="bi bi-chat-dots-fill me-2"></i>
+              <strong>AI Saran Produktivitas</strong>
+              <p id="insightText" class="mb-0 mt-1">
+                Atur ulang budget dan kurangi pengeluaran tidak penting.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal set target budget -->
+    <div
+      class="modal fade"
+      id="setBudgetModal"
+      tabindex="-1"
+      aria-labelledby="budgetModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4">
+          <div class="modal-header border-0">
+            <h5 class="modal-title fw-bold" id="budgetModalLabel">
+              Atur Target Anggaran Bulanan
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <label class="form-label">Target Budget (Rp)</label>
+            <input
+              type="number"
+              class="form-control"
+              id="targetBudgetInput"
+              placeholder="Masukkan nominal"
+            />
+            <small class="text-muted"
+              >Bandingkan dengan total pengeluaran bulan ini.</small
+            >
+          </div>
+          <div class="modal-footer border-0">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Batal
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary-custom"
+              id="saveBudgetBtn"
+            >
+              Simpan Target
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="mt-5 pt-4 pb-3 text-center">
+      <div class="container">
+        <p class="mb-0 small">
+          &copy; 2026 WebBudgetTracker — Solusi keuangan, bisnis & produktivitas
+          modern. <i class="bi bi-currency-exchange"></i> Kelola anggaran jadi
+          lebih cerdas.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // ----------------------------- DATA MODEL ---------------------------------
+      let transactions = []; // each: { id, description, amount, type, category }
+      let monthlyTarget = 8000000; // default Rp 8 juta
+
+      // Helper: format Rupiah
+      function formatRupiah(angka) {
+        return new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+          minimumFractionDigits: 0,
+        }).format(angka);
+      }
+
+      // Hitung total income, expense, balance
+      function calculateTotals() {
+        let totalInc = 0,
+          totalExp = 0;
+        transactions.forEach((t) => {
+          if (t.type === "income") totalInc += t.amount;
+          else totalExp += t.amount;
+        });
+        return { totalInc, totalExp, balance: totalInc - totalExp };
+      }
+
+      // Update all UI: stats, tabel, progress bar, insight, dll.
+      function refreshUI() {
+        const { totalInc, totalExp, balance } = calculateTotals();
+        const remaining = totalInc - totalExp;
+        document.getElementById("totalBalance").innerHTML =
+          formatRupiah(balance);
+        document.getElementById("totalIncome").innerHTML =
+          formatRupiah(totalInc);
+        document.getElementById("totalExpense").innerHTML =
+          formatRupiah(totalExp);
+        document.getElementById("remainingBudget").innerHTML =
+          formatRupiah(remaining);
+        document.getElementById("targetBudgetDisplay").innerHTML =
+          formatRupiah(monthlyTarget);
+
+        // Update progress budget (pengeluaran terhadap target)
+        const expensePercent = Math.min(100, (totalExp / monthlyTarget) * 100);
+        const progressFill = document.getElementById("budgetProgressFill");
+        progressFill.style.width = expensePercent + "%";
+        if (expensePercent >= 100) {
+          progressFill.style.backgroundColor = "#dc3545";
+          document.getElementById("budgetStatusMsg").innerHTML =
+            '<i class="bi bi-exclamation-triangle"></i> Perhatian! Pengeluaran melebihi target!';
+        } else if (expensePercent >= 80) {
+          progressFill.style.backgroundColor = "#f4a100";
+          document.getElementById("budgetStatusMsg").innerHTML =
+            "⚠️ Hampir mencapai batas anggaran.";
+        } else {
+          progressFill.style.backgroundColor = "#2c7a5e";
+          document.getElementById("budgetStatusMsg").innerHTML =
+            "✅ Dalam batas aman, produktif!";
+        }
+        document.getElementById("expenseVsTarget").innerHTML =
+          formatRupiah(totalExp) + " / " + formatRupiah(monthlyTarget);
+
+        // transaction count & daily avg (approx, asumsi 30 hari)
+        const count = transactions.length;
+        document.getElementById("transactionCount").innerText = count;
+        const dailyAvg = totalExp / 30;
+        document.getElementById("dailyAvg").innerHTML = formatRupiah(dailyAvg);
+
+        // Render transaction table
+        const tbody = document.getElementById("transactionList");
+        const emptyMsgDiv = document.getElementById("emptyMsg");
+        if (transactions.length === 0) {
+          tbody.innerHTML = "";
+          emptyMsgDiv.classList.remove("d-none");
+        } else {
+          emptyMsgDiv.classList.add("d-none");
+          tbody.innerHTML = transactions
+            .map(
+              (trans) => `
+        <tr>
+          <td class="fw-semibold">${escapeHtml(trans.description)}</td>
+          <td><span class="badge-category bg-light text-dark">${escapeHtml(trans.category)}</span></td>
+          <td>${trans.type === "income" ? '<span class="badge bg-success bg-opacity-25 text-success"><i class="bi bi-plus-circle"></i> Pemasukan</span>' : '<span class="badge bg-danger bg-opacity-25 text-danger"><i class="bi bi-dash-circle"></i> Pengeluaran</span>'}</td>
+          <td class="${trans.type === "income" ? "text-success fw-semibold" : "text-danger"}">${formatRupiah(trans.amount)}</td>
+          <td><button class="delete-btn" data-id="${trans.id}"><i class="bi bi-trash3"></i></button></td>
+        </tr>
+      `,
+            )
+            .join("");
+        }
+
+        // Ratio & insight
+        const ratio = totalInc > 0 ? (totalExp / totalInc) * 100 : 0;
+        document.getElementById("expenseIncomeRatio").innerHTML =
+          ratio.toFixed(1) + "%";
+        document.getElementById("ratioProgress").style.width =
+          Math.min(100, ratio) + "%";
+        let insightMsg = "";
+        if (ratio > 80)
+          insightMsg =
+            "⚠️ Pengeluaran sangat tinggi dibanding pendapatan. Prioritaskan efisiensi operasional & cut biaya tidak produktif.";
+        else if (ratio > 50)
+          insightMsg =
+            "📊 Pengeluaran cukup sehat. Coba alokasikan 20% untuk investasi bisnis atau peningkatan produktivitas.";
+        else
+          insightMsg =
+            "✨ Hebat! Anda mengelola pengeluaran dengan baik. Pertimbangkan untuk menambah investasi produktivitas digital.";
+        if (totalInc === 0 && transactions.length > 0)
+          insightMsg =
+            "💡 Tambah pemasukan untuk menyeimbangkan arus kas. Fokus pada revenue stream.";
+        else if (transactions.length === 0)
+          insightMsg =
+            "Mulai catat transaksi untuk mendapatkan insight keuangan cerdas.";
+        document.getElementById("insightText").innerHTML = insightMsg;
+
+        // Productivity tip
+        const tipEl = document.getElementById("productivityTip");
+        if (totalExp > monthlyTarget)
+          tipEl.innerHTML =
+            "📉 Pengeluaran melebihi target! Evaluasi belanja bisnis & gunakan tools gratis.";
+        else if (totalExp > 0 && totalInc > 0)
+          tipEl.innerHTML =
+            "💪 Terus pantau budget, tingkatkan efisiensi dengan catatan mingguan.";
+        else
+          tipEl.innerHTML =
+            "📝 Tambahkan transaksi untuk rekomendasi produktivitas personal.";
+      }
+
+      // Simple escape HTML
+      function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function (m) {
+          if (m === "&") return "&amp;";
+          if (m === "<") return "&lt;";
+          if (m === ">") return "&gt;";
+          return m;
+        });
+      }
+
+      // Tambah transaksi
+      function addTransaction(description, amount, type, category) {
+        if (!description || amount <= 0 || isNaN(amount)) return false;
+        const newId = Date.now() + Math.random() * 1000;
+        transactions.unshift({
+          id: newId,
+          description: description.trim(),
+          amount: Number(amount),
+          type: type,
+          category: category,
+        });
+        refreshUI();
+        return true;
+      }
+
+      // Hapus transaksi
+      function deleteTransaction(id) {
+        transactions = transactions.filter((t) => t.id != id);
+        refreshUI();
+      }
+
+      // Inisialisasi data demo (contoh keuangan bisnis & produktivitas)
+      function loadDemoData() {
+        transactions = [];
+        const demoData = [
+          {
+            desc: "Pendapatan Konsultan Bisnis",
+            amount: 5500000,
+            type: "income",
+            category: "Pendapatan Bisnis",
+          },
+          {
+            desc: "Belanja Alat Produktivitas (Software)",
+            amount: 750000,
+            type: "expense",
+            category: "Alat Produktivitas",
+          },
+          {
+            desc: "Biaya Operasional & Server",
+            amount: 1200000,
+            type: "expense",
+            category: "Gaji/Operasional",
+          },
+          {
+            desc: "Google Ads Marketing",
+            amount: 600000,
+            type: "expense",
+            category: "Marketing",
+          },
+          {
+            desc: "Jasa Desain & Branding",
+            amount: 450000,
+            type: "expense",
+            category: "Lainnya",
+          },
+          {
+            desc: "Pendapatan Affiliate",
+            amount: 2100000,
+            type: "income",
+            category: "Pendapatan Bisnis",
+          },
+        ];
+        demoData.forEach((item, idx) => {
+          transactions.push({
+            id: Date.now() + idx + Math.random(),
+            description: item.desc,
+            amount: item.amount,
+            type: item.type,
+            category: item.category,
+          });
+        });
+        refreshUI();
+      }
+
+      // Reset data (hapus semua transaksi)
+      function resetAllData() {
+        if (
+          confirm(
+            "Reset semua data transaksi? Data demo akan diganti dengan contoh awal.",
+          )
+        ) {
+          loadDemoData();
+        }
+      }
+
+      // Simpan target budget dari modal
+      function setBudgetTarget(value) {
+        let newTarget = Number(value);
+        if (isNaN(newTarget) || newTarget <= 0) return false;
+        monthlyTarget = newTarget;
+        localStorage.setItem("budgetTarget", monthlyTarget);
+        refreshUI();
+        return true;
+      }
+
+      // Event listeners & localStorage
+      document.addEventListener("DOMContentLoaded", () => {
+        // Load target dari localStorage jika ada
+        const savedTarget = localStorage.getItem("budgetTarget");
+        if (savedTarget && !isNaN(Number(savedTarget)))
+          monthlyTarget = Number(savedTarget);
+        // Load demo data
+        loadDemoData();
+
+        // Form submit
+        const form = document.getElementById("transactionForm");
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const desc = document.getElementById("desc").value;
+          const amount = document.getElementById("amount").value;
+          const type = document.getElementById("type").value;
+          const category = document.getElementById("category").value;
+          if (!desc || !amount || amount <= 0) {
+            alert("Isi deskripsi dan jumlah yang valid (minimal 1 Rupiah)");
+            return;
+          }
+          addTransaction(desc, amount, type, category);
+          form.reset();
+          document.getElementById("desc").focus();
+        });
+
+        // Delete listener (delegation)
+        document
+          .getElementById("transactionList")
+          .addEventListener("click", (e) => {
+            const btn = e.target.closest(".delete-btn");
+            if (btn && btn.dataset.id) {
+              if (confirm("Hapus transaksi ini?"))
+                deleteTransaction(Number(btn.dataset.id));
+            }
+          });
+
+        // Reset demo button
+        document
+          .getElementById("resetDemoBtn")
+          .addEventListener("click", () => resetAllData());
+
+        // Simpan target budget modal
+        const saveBtn = document.getElementById("saveBudgetBtn");
+        const targetInput = document.getElementById("targetBudgetInput");
+        saveBtn.addEventListener("click", () => {
+          const val = targetInput.value;
+          if (setBudgetTarget(val)) {
+            const modalEl = document.getElementById("setBudgetModal");
+            const modal = bootstrap.Modal.getInstance(modalEl);
+            modal.hide();
+            targetInput.value = "";
+          } else {
+            alert("Masukkan target budget yang valid (angka positif)");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
